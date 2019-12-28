@@ -33,6 +33,9 @@ if ! echo "$CHANGED_FILES" | grep -E 'report|lhci' > /dev/null; then
   exit 0
 fi
 
+# Generate HTML reports in ./dist/now/
+yarn now-build
+
 # Install LHCI
 npm install -g @lhci/cli@0.3.x
 # Collect our LHCI results.

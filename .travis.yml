@@ -40,7 +40,6 @@ script:
   - yarn test-lantern
   - yarn test-bundle
   - yarn i18n:checks
-  - yarn now-build
   - yarn dogfood-lhci
   - yarn test-docs
 before_cache:
