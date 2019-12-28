@@ -122,10 +122,14 @@ class IsCrawlable extends Audit {
           const robotsTxt = robotsParser(robotsFileUrl.href, artifacts.RobotsTxt.content);
 
           if (!robotsTxt.isAllowed(mainResource.url)) {
+            const line = robotsTxt.getMatchingLineNumber(mainResource.url);
             blockingDirectives.push({
               source: {
-                type: /** @type {'url'} */ ('url'),
-                value: robotsFileUrl.href,
+                type: /** @type {'source-location'} */ ('source-location'),
+                url: robotsFileUrl.href,
+                urlProvider: /** @type {'network'} */ ('network'),
+                line: line !== undefined ? line - 1 : 0,
+                column: 0,
               },
             });
           }
